@@ -12,7 +12,7 @@ void findPairs(int arr[], int n, int sum)
 
 int main() 
 { 
-    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
+    int arr[]; 
     int n = sizeof(arr)/sizeof(arr[0]); 
     int sum = 8; 
     findPairs(arr, n, sum); 
@@ -30,7 +30,7 @@ void findPairs(int arr[], int n, int sum)
 
 int main() 
 { 
-    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
+    int arr[]; 
     int n = sizeof(arr)/sizeof(arr[0]); 
     int sum = 8; 
     findPairs(arr, n, sum); 
@@ -56,7 +56,7 @@ void findPairs(int arr[], int n, int sum)
 
 int main() 
 { 
-    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
+    int arr[]; 
     int n = sizeof(arr)/sizeof(arr[0]); 
     int sum = 8; 
     findPairs(arr, n, sum); 
