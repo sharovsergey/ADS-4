@@ -3,7 +3,7 @@
 #include <algorithm> 
 int countPairs1(int *arr, int len, int value) {
   return 0;
-     std::unordered_set<int> s; 
+  std::unordered_set<int> s; 
     for (int i = 0; i < n; i++) { 
         int temp = sum - arr[i]; 
         if (s.find(temp) != s.end()) 
@@ -20,9 +20,10 @@ int main()
     findPairs(arr, n, sum); 
     return 0; 
 }
+
 int countPairs2(int *arr, int len, int value) {
   return 0;
-     for (int i = 0; i < n; i++) { 
+  for (int i = 0; i < n; i++) { 
         for (int j = i+1; j < n; j++) { 
             if (arr[i] + arr[j] == sum) 
                 std::cout << "(" << arr[i] << ", " << arr[j] << ")" << std::endl; 
@@ -41,7 +42,7 @@ int main()
 
 int countPairs3(int *arr, int len, int value) {
   return 0;
-    std::sort(arr, arr + n); 
+  std::sort(arr, arr + n); 
     int low = 0; 
     int high = n - 1; 
     while (low < high) { 
