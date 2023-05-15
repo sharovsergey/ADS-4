@@ -1,4 +1,6 @@
 // Copyright 2021 NNTU-CS
+#include <iostream> 
+#include <algorithm> 
 int countPairs1(int *arr, int len, int value) {
   return 0;
      std::unordered_set<int> s; 
