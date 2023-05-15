@@ -1,6 +1,25 @@
 // Copyright 2021 NNTU-CS
-int countPairs1(int arr, int len, int value) {
-  { 
+void findPairs(int arr[], int n, int sum) 
+{ 
+    std::unordered_set<int> s; 
+    for (int i = 0; i < n; i++) { 
+        int temp = sum - arr[i]; 
+        if (s.find(temp) != s.end()) 
+            std::cout << "(" << temp << ", " << arr[i] << ")" << std::endl; 
+        s.insert(arr[i]); 
+    } 
+} 
+
+int main() 
+{ 
+    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    int sum = 8; 
+    findPairs(arr, n, sum); 
+    return 0; 
+}
+void findPairs(int arr[], int n, int sum) 
+{ 
     for (int i = 0; i < n; i++) { 
         for (int j = i+1; j < n; j++) { 
             if (arr[i] + arr[j] == sum) 
@@ -15,27 +34,11 @@ int main()
     int n = sizeof(arr)/sizeof(arr[0]); 
     int sum = 8; 
     findPairs(arr, n, sum); 
-  return 0;
+    return 0; 
 }
-int countPairs2(int arr, int len, int value) {
-  for (int i = 0; i < n; i++) { 
-        for (int j = i+1; j < n; j++) { 
-            if (arr[i] + arr[j] == sum) 
-                std::cout << "(" << arr[i] << ", " << arr[j] << ")" << std::endl; 
-        } 
-    } 
-} 
-
-int main() 
+void findPairs(int arr[], int n, int sum) 
 { 
-    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-    int sum = 8; 
-    findPairs(arr, n, sum);
-  return 0;
-}
-int countPairs3(int arr, int len, int value) {
-  std::sort(arr, arr + n); 
+    std::sort(arr, arr + n); 
     int low = 0; 
     int high = n - 1; 
     while (low < high) { 
@@ -56,6 +59,6 @@ int main()
     int arr[] = { 1, 5, 7, 3, 8, 4 }; 
     int n = sizeof(arr)/sizeof(arr[0]); 
     int sum = 8; 
-    findPairs(arr, n, sum);
-  return 0;
+    findPairs(arr, n, sum); 
+    return 0; 
 }
