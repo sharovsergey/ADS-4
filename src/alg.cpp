@@ -1,68 +1,41 @@
 // Copyright 2021 NNTU-CS
-#include <iostream> 
-#include <algorithm> 
+
 int countPairs1(int *arr, int len, int value) {
   return 0;
-  std::unordered_set<int> s; 
-    for (int i = 0; i < n; i++) { 
-        int temp = sum - arr[i]; 
-        if (s.find(temp) != s.end()) 
-            std::cout << "(" << temp << ", " << arr[i] << ")" << std::endl; 
-        s.insert(arr[i]); 
-    } 
-} 
-
-int main() 
-{ 
-    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-    int sum = 8; 
-    findPairs(arr, n, sum); 
-    return 0; 
-}
+  for(int i=0; i<n; i++)
+  {
+    for(int j=i+1; j<n; j++)
+    {
+      if(arr[i]+arr[j]==sum)
+        cout<<arr[i]<<" "<<arr[j]<<endl;
+    }
+  }
 
 int countPairs2(int *arr, int len, int value) {
   return 0;
-  for (int i = 0; i < n; i++) { 
-        for (int j = i+1; j < n; j++) { 
-            if (arr[i] + arr[j] == sum) 
-                std::cout << "(" << arr[i] << ", " << arr[j] << ")" << std::endl; 
-        } 
-    } 
-} 
-
-int main() 
-{ 
-    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-    int sum = 8; 
-    findPairs(arr, n, sum); 
-    return 0; 
+  sort(arr, arr+n);
+  int i=0, j=n-1;
+  while(i<j)
+  {
+    if(arr[i]+arr[j]==sum)
+    {
+      cout<<arr[i]<<" "<<arr[j]<<endl;
+      i++; j--;
+    }
+    else if(arr[i]+arr[j]<sum)
+      i++;
+    else
+      j--;
+  }
 }
-
 int countPairs3(int *arr, int len, int value) {
   return 0;
-  std::sort(arr, arr + n); 
-    int low = 0; 
-    int high = n - 1; 
-    while (low < high) { 
-        if (arr[low] + arr[high] == sum) { 
-            std::cout << "(" << arr[low] << ", " << arr[high] << ")" << std::endl; 
-            low++; 
-            high--; 
-        } else if (arr[low] + arr[high] < sum) { 
-            low++; 
-        } else { 
-            high--; 
-        } 
-    } 
-} 
-
-int main() 
-{ 
-    int arr[] = { 1, 5, 7, 3, 8, 4 }; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-    int sum = 8; 
-    findPairs(arr, n, sum); 
-    return 0; 
+  sort(arr, arr+n);
+  for(int i=0; i<n; i++)
+  {
+    int target = sum - arr[i];
+    int res = binary_search(arr+i+1, arr+n, target);
+    if(res)
+      cout<<arr[i]<<" "<<target<<endl;
+  }
 }
