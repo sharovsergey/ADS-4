@@ -1,6 +1,9 @@
 // Copyright 2021 NNTU-CS
 using namespace std;
-void findPairs(int arr[], int n, int sum) {
+int countPairs1(int *arr, int len, int value) {
+  return 0;
+}
+int findPairs(int arr[], int n, int sum) {
     sort(arr, arr + n);
     int i = 0, j = n - 1;
     while (i < j) {
@@ -15,7 +18,10 @@ void findPairs(int arr[], int n, int sum) {
         }
     }
 }
-void findPairs(int arr[], int n, int sum) {
+int countPairs2(int *arr, int len, int value) {
+  return 0;
+}
+int findPairs(int arr[], int n, int sum) {
     unordered_set<int> s;
     for (int i = 0; i < n; i++) {
         int temp = sum - arr[i];
@@ -25,7 +31,10 @@ void findPairs(int arr[], int n, int sum) {
         s.insert(arr[i]);
     }
 }
-void findPairs(int arr[], int n, int sum) {
+int countPairs3(int *arr, int len, int value) {
+  return 0;
+}
+int findPairs(int arr[], int n, int sum) {
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
             if (arr[i] + arr[j] == sum) {
