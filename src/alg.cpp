@@ -1,4 +1,5 @@
 // Copyright 2021 NNTU-CS
+using namespace std;
 void findPairs(int arr[], int n, int sum) {
     sort(arr, arr + n);
     int i = 0, j = n - 1;
