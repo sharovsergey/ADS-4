@@ -1,55 +1,68 @@
 // Copyright 2021 NNTU-CS
-using namespace std;
-int countPairs1(int *arr, int len, int value) {
-  return 0;
-}
-void findPairs1(vector<int>& arr, int sum)
+int countPairs1(int* arr, int len, int value)
 {
-    int n = arr.size();
-    unordered_map<int, int> m;
-    for (int i = 0; i < n; i++) {
-        int x = sum - arr[i];
-        if (m[x]) {
-            cout << arr[i] << " " << x << endl;
-        }
-        m[arr[i]]++;
-    }
-}
-int countPairs2(int *arr, int len, int value) {
-  return 0;
-}
-void findPairs2(vector<int>& arr, int sum)
-{
-    int n = arr.size();
-    unordered_set<int> s;
-    for (int i = 0; i < n; i++) {
-        int x = sum - arr[i];
-        if (s.find(x) != s.end()) {
-            cout << arr[i] << " " << x << endl;
-        }
-        s.insert(arr[i]);
-    }
-}
-int countPairs3(int *arr, int len, int value) {
-  return 0;
-}
-void findPairs(vector<int>& arr, int sum)
-{
-    int n = arr.size();
-    sort(arr.begin(), arr.end());
-    int i = 0, j = n - 1;
-    while (i < j) {
-        if (arr[i] + arr[j] == sum) {
-            cout << arr[i] << " " << arr[j] << endl;
-            i++;
-            j--;
-        }
-        else if (arr[i] + arr[j] < sum) {
-            i++;
-        }
-        else {
-            j--;
-        }
-    }
-}
+	int k = 0;
+	for (int i = 0; i < len-1; i++)
+	{
+		for (int j = i + 1; j < len; j++)
+		{
+			if (arr[i] + arr[j] == value)
+				k++;
+		}
+	}
 
+	return k;
+}
+int countPairs2(int* arr, int len, int value)
+{
+	int k = 0;
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = len - 1; j > i; j--)
+		{
+			if (arr[i] + arr[j] == value)
+			{
+				k++;
+
+			}
+		}
+	}
+	return k;
+}
+int countPairs3(int* arr, int len, int value)
+{int k = 0;
+	for (int i = 0; i < len - 1; i++)
+	{
+		int left = i, right = len;
+		
+		while (left < right-1)
+		{
+			int mid = (left + right) / 2;
+			if (arr[i] + arr[mid] == value)
+			{
+				k++;
+				int j = mid+1;
+				while (arr[i] + arr[j] == value && j <right)
+				{
+					k++;
+					j++;
+				}
+				j = mid - 1;
+				while (arr[i] + arr[j] == value && j>left)
+				{
+					k++;
+					j--;
+				}
+				break;
+			}
+			if (arr[i] + arr[mid] > value)
+				right = mid;
+			else
+				left = mid;
+		}
+	
+	}
+	
+	
+	return k;
+}
