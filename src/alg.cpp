@@ -1,88 +1,55 @@
 // Copyright 2021 NNTU-CS
-#include <iostream>
-#include <unordered_map>
-#include <algorithm>
-
-
-
-int countPairs1(int* arr, int len, int value)
-{
+int countPairs1(int *arr, int len, int value) {
     int count = 0;
-    for (int i = 0; i < len; i++)
-    {
-        for (int j = i + 1; j < len; j++)
-        {
-            if (arr[i] + arr[j] == value)
+    for (int i = 0; i < len-1; i++) {
+        for (int j = i + 1; j < len; j++) {
+            if (arr[i] + arr[j] == value) {
                 count++;
+            }
         }
     }
     return count;
 }
 
-int countPairs2(int* arr, int len, int value) {
-    std::unordered_map<int, int> countMap;
-    int pairCount = 0;
-
-    for (int i = 0; i < len; i++) {
-        int complement = value - arr[i];
-
-        if (countMap.find(complement) != countMap.end()) {
-            pairCount += countMap[complement];
-        }
-
-        countMap[arr[i]]++;
-    }
-
-    return pairCount;
-}
-
-
-int countPairs3(int* arr, int len, int value) {
-    std::sort(arr, arr + len); // Sort the array in ascending order
+int countPairs2(int *arr, int len, int value) {
     int count = 0;
-
     for (int i = 0; i < len - 1; i++) {
-        int complement = value - arr[i];
-        int low = i + 1;
-        int high = len - 1;
-        int index = binarySearch(arr, low, high, complement);
-
-        if (index != -1) {
-            // Count the number of occurrences of complement
-            int complementCount = 1;
-            int left = index - 1;
-            int right = index + 1;
-
-            // Count occurrences to the left of index
-            while (left >= i && arr[left] == complement) {
-                complementCount++;
-                left--;
+        for (int j = len - 1; j > i; j--) {
+            if (arr[i] + arr[j] == value) {
+                count++;
             }
-
-            // Count occurrences to the right of index
-            while (right < len && arr[right] == complement) {
-                complementCount++;
-                right++;
-            }
-
-            count += complementCount;
         }
     }
-
     return count;
 }
 
-
-
-int main()
-{
-    int arr[] = { 20, 30, 30, 40, 40 };
-    int len = sizeof(arr) / sizeof(arr[0]);
-    int value = 50;
-
-    std::cout << "countPairs1: " << countPairs1(arr, len, value) << std::endl;
-    std::cout << "countPairs2: " << countPairs2(arr, len, value) << std::endl;
-    std::cout << "countPairs3: " << countPairs3(arr, len, value) << std::endl;
-
-    return 0;
+int countPairs3(int *arr, int len, int value) {
+    int count = 0;
+    for (int i = 0; i < len - 1; i++) {
+        int one = i;
+        int two = len;
+        while (one < two-1) {
+            int mid = (one + two) / 2;
+            if (arr[i] + arr[mid] == value) {
+                count++;
+                int j = mid+1;
+                while (j < two && arr[i] + arr[j] == value) {
+                    count++;
+                    j++;
+                }
+                j = mid - 1;
+                while (j > one && arr[i] + arr[j] == value) {
+                    count++;
+                    j--;
+                }
+                break;
+            }
+            if (arr[i] + arr[mid] > value) {
+                two = mid;
+            } else {
+                one = mid;
+            }
+        }
+    }
+    return count;
 }
