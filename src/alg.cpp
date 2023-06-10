@@ -2,7 +2,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <algorithm>
-#include "include/alg.cpp"
+
 
 
 int countPairs1(int* arr, int len, int value)
